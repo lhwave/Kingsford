@@ -17,7 +17,7 @@ Income = df_Income['Account Name'].unique().tolist()
 Income_selection = st.multiselect('Income selection:', Income, default=Income)
 mask = (df_Income['Month'].between(*Month_selection)) & (df_Income['Account Name'].isin(Income_selection))
 
-df_Income_gp = df[mask].groupby(by=['Month','Year']).sum()[['Amount']]
+df_Income_gp = df_Income[mask].groupby(by=['Month','Year']).sum()[['Amount']]
 df_Income_gp = df_Income_gp.reset_index()
 
 fig = px.histogram(df_Income_gp, x='Month', y='Amount',
