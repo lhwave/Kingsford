@@ -10,6 +10,7 @@ Month_selection = st.slider("Month selection:", min_value=min(Months), max_value
 mask = (df['Month'].between(*Month_selection))
 
 df_gp = df[mask].groupby(by=['Month','Year']).sum()[['Amount']]
+df_gp = df_gp.reset_index()
 
 fig = px.histogram(df_gp, x='Month', y='Amount',
              color='Year', barmode='group')
