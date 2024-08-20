@@ -6,7 +6,7 @@ df = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/D
 df_gp = df.groupby(by=['Month','Year']).sum()[['Amount']]
 
 Months = df[‘Month’].unique().tolist()
-Month_selection = st.slider(‘Month selection:’, min_value=min(month), max_value=max(month), value=(min(month),Max(month)))
+Month_selection = st.slider("Month selection:", min_value=min(month), max_value=max(month), value=(min(month),Max(month)))
 
 fig = px.histogram(df, x='Month', y='Amount',
              color='Year', barmode='group')
