@@ -24,3 +24,31 @@ fig = px.histogram(df_Income_gp, x='Month', y='Amount',
              color='Year', barmode='group')
 fig.update_xaxes(type='category')
 st.plotly_chart(fig)
+
+st.subheader('Expense')
+
+Expense = df_Expense['Account Name'].unique().tolist()
+Expense_selection = st.multiselect('Expense selection:', Expense, default=Expense)
+mask = (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Account Name'].isin(Expense_selection))
+
+df_Expense_gp = df_Expense[mask].groupby(by=['Month','Year']).sum()[['Amount']]
+df_Expense_gp = df_Expense_gp.reset_index()
+
+fig = px.histogram(df_Expense_gp, x='Month', y='Amount',
+             color='Year', barmode='group')
+fig.update_xaxes(type='category')
+st.plotly_chart(fig)
+
+st.subheader('Profit')
+
+Profit = df_Profit['Account Name'].unique().tolist()
+Profit_selection = st.multiselect('Profit selection:', Profit, default=Profit)
+mask = (df_Profit['Month'].between(*Month_selection)) & (df_Profit['Account Name'].isin(Profit_selection))
+
+df_Profit_gp = df_Profit[mask].groupby(by=['Month','Year']).sum()[['Amount']]
+df_Profit_gp = df_Profit_gp.reset_index()
+
+fig = px.histogram(df_Profit_gp, x='Month', y='Amount',
+             color='Year', barmode='group')
+fig.update_xaxes(type='category')
+st.plotly_chart(fig)
