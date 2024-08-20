@@ -42,8 +42,8 @@ st.plotly_chart(fig)
 st.subheader('Profit')
 
 Profit = df_Profit['Account Name'].unique().tolist()
-Profit_selection = st.selectbox('Profit selection:', Profit, default="EBIDTA")
-mask = (df_Profit['Month'].between(*Month_selection)) & (df_Profit['Account Name'].isin(Profit_selection))
+Profit_selection = st.selectbox('Profit selection:', Profit)
+mask = (df_Profit['Month'].between(*Month_selection)) & (df_Profit['Account Name']==(Profit_selection))
 
 df_Profit_gp = df_Profit[mask].groupby(by=['Month','Year']).sum()[['Amount']]
 df_Profit_gp = df_Profit_gp.reset_index()
