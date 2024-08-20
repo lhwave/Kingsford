@@ -8,7 +8,7 @@ df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford
 
 st.subheader ('Kingsford Profit & Loss')
 
-Months = df['Month'].unique().tolist()
+Months = df_Profit['Month'].unique().tolist()
 Month_selection = st.slider('Month selection:', min_value=min(Months), max_value=max(Months), value=(min(Months),max(Months)))
 
 st.subheader('Income')
@@ -20,7 +20,7 @@ mask = (df_Income['Month'].between(*Month_selection)) & (df_Income['Account Name
 df_Income_gp = df[mask].groupby(by=['Month','Year']).sum()[['Amount']]
 df_Income_gp = df_Income_gp.reset_index()
 
-fig = px.histogram(df_gp, x='Month', y='Amount',
+fig = px.histogram(df_Income_gp, x='Month', y='Amount',
              color='Year', barmode='group')
 fig.update_xaxes(type='category')
 st.plotly_chart(fig)
