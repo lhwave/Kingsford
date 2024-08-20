@@ -6,6 +6,6 @@ df = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/D
 df_gp = df.groupby(by=['Month','Year']).sum()[['Amount']]
 
 fig = px.histogram(df, x="Month", y="Amount",
-             color="Year")
+             color="Year", barmode="group")
 
 st.plotly_chart(fig)
