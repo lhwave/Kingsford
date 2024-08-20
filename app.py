@@ -14,5 +14,5 @@ df_gp = df_gp.reset_index()
 
 fig = px.histogram(df_gp, x='Month', y='Amount',
              color='Year', barmode='group')
-
+fig.update_xaxes(type='category')
 st.plotly_chart(fig)
