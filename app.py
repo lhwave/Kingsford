@@ -6,7 +6,7 @@ df_Income = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford
 df_Expense = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Expense', usecols='A:F')
 df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Profit', usecols='A:F')
 
-st.subheader ('Kingsford's Profit & Loss')
+st.subheader ('Kingsford Profit & Loss')
 
 Months = df['Month'].unique().tolist()
 Month_selection = st.slider('Month selection:', min_value=min(Months), max_value=max(Months), value=(min(Months),max(Months)))
