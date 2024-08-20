@@ -29,7 +29,7 @@ st.subheader('Expense')
 
 Expense = df_Expense['Account Name'].unique().tolist()
 Expense_selection = st.multiselect('Expense selection:', Expense, default=Expense)
-mask = (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Account Name'].equal(Expense_selection))
+mask = (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Account Name'].isin(Expense_selection))
 
 df_Expense_gp = df_Expense[mask].groupby(by=['Month','Year']).sum()[['Amount']]
 df_Expense_gp = df_Expense_gp.reset_index()
@@ -43,7 +43,7 @@ st.subheader('Profit')
 
 Profit = df_Profit['Account Name'].unique().tolist()
 Profit_selection = st.selectbox('Profit selection:', Profit, default=Profit)
-mask = (df_Profit['Month'].between(*Month_selection)) & (df_Profit['Account Name'].isin(Profit_selection))
+mask = (df_Profit['Month'].between(*Month_selection)) & (df_Profit['Account Name'].equal(Profit_selection))
 
 df_Profit_gp = df_Profit[mask].groupby(by=['Month','Year']).sum()[['Amount']]
 df_Profit_gp = df_Profit_gp.reset_index()
