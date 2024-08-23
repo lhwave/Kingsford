@@ -13,22 +13,18 @@ Month_selection = st.slider('Month selection:', min_value=min(Months), max_value
 
 st.subheader('Income')
 
-Income = df_Income['Account Name'].unique().tolist()
-Income_selection = st.multiselect('Income selection:', Income, default=Income)
-pie_1 = (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==("2023"))
-pie_2 = (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==("2024"))
-mask = (df_Income['Month'].between(*Month_selection)) & (df_Income['Account Name'].isin(Income_selection))
-
+pie_1 = (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==('2023'))
 df_Income_pie_1 = df_Income[pie_1].groupby(by=['Account name']).sum()[['Amount']]
 df_Income_pie_1 = df_Income_pie_1.reset_index()
-
 df_Income_pc_1 = px.pie(df_Income_pie_1,
                         title='2023 Income Breakdown',
                         values='Amount',
                         name='Account name')
+st.plotly_chart(df_Income_pc_1)
 
-df_Income_pie_2 = df_Income[pie_2].groupby(by=['Account name']).sum()[['Amount']]
-df_Income_pie_2 = df_Income_pie_2.reset_index()
+Income = df_Income['Account Name'].unique().tolist()
+Income_selection = st.multiselect('Income selection:', Income, default=Income)
+mask = (df_Income['Month'].between(*Month_selection)) & (df_Income['Account Name'].isin(Income_selection))
 
 
 df_Income_gp = df_Income[mask].groupby(by=['Month','Year']).sum()[['Amount']]
