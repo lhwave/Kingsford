@@ -13,10 +13,10 @@ Month_selection = st.slider('Month selection:', min_value=min(Months), max_value
 
 st.subheader('Income')
 
-pc= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==("2023"))
-df_Income_pc = df_Income[pc].groupby(by=['Account Name']).sum()[['Amount']]
-df_Income_pc= df_Income_pc.reset_index()
-fig = px.pie(df_Income_pc,
+mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==("2023"))
+df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
+df_Income_gp= df_Income_gp.reset_index()
+fig = px.pie(df_Income_gp,
                         title='2023 Income Breakdown',
                         values='Amount',
                         name='Account Name')
