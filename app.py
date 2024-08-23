@@ -15,8 +15,8 @@ st.subheader('Income')
 
 Income = df_Income['Account Name'].unique().tolist()
 Income_selection = st.multiselect('Income selection:', Income, default=Income)
-pie_1 = ((df_Income['Month'].between(*Month_selection)) & (df_Income['Year']=('2023'))
-pie_2 = ((df_Income['Month'].between(*Month_selection)) & (df_Income['Year']=('2024'))
+pie_1 = ((df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==('2023'))
+pie_2 = ((df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==('2024'))
 mask = (df_Income['Month'].between(*Month_selection)) & (df_Income['Account Name'].isin(Income_selection))
 
 df_Income_pie_1 = df_Income[pie_1].groupby(by=['Account name']).sum()[['Amount']]
