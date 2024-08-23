@@ -16,10 +16,7 @@ st.subheader('Income')
 mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==("2023"))
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
 df_Income_gp= df_Income_gp.reset_index()
-fig = px.pie(df_Income_gp,
-                        title='2023 Income Breakdown',
-                        values='Amount',
-                        name='Account Name')
+fig = px.pie(df_Income_gp, values='Amount', name='Account Name')
 st.plotly_chart(fig)
 
 Income = df_Income['Account Name'].unique().tolist()
