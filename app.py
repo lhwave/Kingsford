@@ -8,12 +8,17 @@ df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford
 
 st.subheader ('Kingsford Profit & Loss')
 
+Years = df_Profit['Month'].unique().tolist()
 Months = df_Profit['Month'].unique().tolist()
 Month_selection = st.slider('Month selection:', min_value=min(Months), max_value=max(Months), value=(min(Months),max(Months)))
 
 st.subheader('Income')
 
-mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(2024))
+col1, col2 = st.columns(2)
+
+with col1:
+Year_selection = st.selectbox(Years)
+mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection)
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
 df_Income_gp= df_Income_gp.reset_index()
 fig = px.pie(df_Income_gp, values='Amount', names = 'Account Name')
