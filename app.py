@@ -17,11 +17,14 @@ st.subheader('Income')
 col1, col2 = st.columns(2)
 
 with col1:
-Year_selection = st.selectbox(Years)
+Year_selection = st.selectbox("Year: ",Years)
+
 mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection)
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
 df_Income_gp= df_Income_gp.reset_index()
 fig = px.pie(df_Income_gp, values='Amount', names = 'Account Name')
+
+with col2:
 st.plotly_chart(fig)
 
 Income = df_Income['Account Name'].unique().tolist()
