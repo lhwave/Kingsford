@@ -17,7 +17,7 @@ st.subheader('Income')
 col1, col2 = st.columns(2)
 
 with col1:
-st.radio(,key="Year_selection",options=["2023","2024"],)
+  st.radio(,key="Year_selection",options=["2023","2024"],)
 
 mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection)
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
@@ -25,7 +25,7 @@ df_Income_gp= df_Income_gp.reset_index()
 fig = px.pie(df_Income_gp, values='Amount', names = 'Account Name')
 
 with col2:
-st.plotly_chart(fig)
+  st.plotly_chart(fig)
 
 Income = df_Income['Account Name'].unique().tolist()
 Income_selection = st.multiselect('Income selection:', Income, default=Income)
