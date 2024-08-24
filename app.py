@@ -8,7 +8,7 @@ df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford
 
 st.subheader ('Kingsford Profit & Loss')
 
-Years = df_Profit['Month'].unique().tolist()
+Years = df_Profit['Year'].unique().tolist()
 Months = df_Profit['Month'].unique().tolist()
 Month_selection = st.slider('Month selection:', min_value=min(Months), max_value=max(Months), value=(min(Months),max(Months)))
 
