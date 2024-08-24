@@ -17,7 +17,7 @@ st.subheader('Income')
 col1, col2 = st.columns(2)
 
 with col1:
-  Year_selection=st.radio(options=["2023","2024"])
+  Year_selection = st.radio([Years])
 
 mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection))
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
