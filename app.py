@@ -6,7 +6,6 @@ df_Income = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford
 df_Expense = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Expense', usecols='A:E')
 df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Profit', usecols='A:E')
 
-st.set_page_config(layout="wide")
 st.subheader ('Kingsford Profit & Loss')
 
 Years = df_Profit['Year'].unique().tolist()
