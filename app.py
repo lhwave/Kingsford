@@ -42,6 +42,20 @@ st.plotly_chart(fig)
 
 st.subheader('Expense')
 
+col1, col2 = st.columns(2)
+
+with col1:
+  Year_selection = st.radio("Year: ", Years,)
+
+mask= (df_Expense['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection))
+df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
+df_Income_gp= df_Income_gp.reset_index()
+fig = px.pie(df_Income_gp, values='Amount', names = 'Account Name')
+
+with col2:
+  st.plotly_chart(fig)
+
+
 Expense = df_Expense['Account Name'].unique().tolist()
 Expense_selection = st.multiselect('Expense selection:', Expense, default=Expense)
 mask = (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Account Name'].isin(Expense_selection))
