@@ -2,9 +2,9 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-df_Income = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Income', usecols='A:F')
-df_Expense = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Expense', usecols='A:F')
-df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Profit', usecols='A:F')
+df_Income = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Income', usecols='A:E')
+df_Expense = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Expense', usecols='A:E')
+df_Profit = pd.read_excel(io='https://raw.githubusercontent.com/lhwave/kingsford/main/Data.xlsx', sheet_name='Profit', usecols='A:E')
 
 st.subheader ('Kingsford Profit & Loss')
 
