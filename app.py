@@ -17,9 +17,9 @@ st.subheader('Income')
 col1, col2 = st.columns(2)
 
 with col1:
-  Year_selection = st.radio("Year: ", Years,)
+  Year_selection_1 = st.radio("Year: ", Years,)
 
-mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection))
+mask= (df_Income['Month'].between(*Month_selection)) & (df_Income['Year']==(Year_selection_1))
 df_Income_gp= df_Income[mask].groupby(by=['Account Name']).sum()[['Amount']]
 df_Income_gp= df_Income_gp.reset_index()
 fig = px.pie(df_Income_gp, values='Amount', names = 'Account Name')
@@ -45,9 +45,9 @@ st.subheader('Expense')
 col1, col2 = st.columns(2)
 
 with col1:
-  Year_selection = st.radio("Year: ", Years,)
+  Year_selection_2 = st.radio("Year: ", Years,)
 
-mask= (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Year']==(Year_selection))
+mask= (df_Expense['Month'].between(*Month_selection)) & (df_Expense['Year']==(Year_selection_2))
 df_Expense_gp= df_Expense[mask].groupby(by=['Account Name']).sum()[['Amount']]
 df_Expense_gp= df_Expense_gp.reset_index()
 fig = px.pie(df_Expense_gp, values='Amount', names = 'Account Name')
